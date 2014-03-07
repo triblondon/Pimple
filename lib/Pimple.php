@@ -255,4 +255,16 @@ class Pimple implements ArrayAccess
     {
         return array_keys($this->values);
     }
+
+    /**
+     * Naive magic getter for undefined object properties, allows parameters to be
+     * referenced as object properties rather than via ArrayAccess
+     *
+     * @return array An array of value names
+     */
+    public function __get($key)
+    {
+        return $this->offsetGet($key);
+    }
+
 }
